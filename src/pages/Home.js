@@ -1,15 +1,8 @@
-import React, { useState } from "react";
-import { Table, Container, Row, Col, Button } from "react-bootstrap/";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import React from "react";
+import { Table, Container, Row, Col } from "react-bootstrap/";
+import { Link } from "react-router-dom";
 
-function Home() {
-  const [lessons] = useState([
-    {
-      id: 1,
-      title: "Lesson 1"
-    }
-  ]);
-
+function Home({ lessons }) {
   return (
     <Container>
       <Row>
@@ -32,7 +25,7 @@ function Home() {
                   <td>
                     <Link
                       to={`/lesson-${id}`}
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       role="button"
                     >
                       lesson {id}

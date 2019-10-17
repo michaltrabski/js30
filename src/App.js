@@ -1,14 +1,45 @@
-import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Lesson1 from "./pages/Lesson1";
+import LessonWrapper from "./pages/LessonWrapper";
+import Lesson1 from "./pages/Lesson1/Lesson1";
+import Lesson2 from "./pages/Lesson2/Lesson2";
 
 function App() {
+  const [lessons] = useState([
+    {
+      id: 1,
+      title: "Lesson 1"
+    },
+    {
+      id: 2,
+      title: "Lesson 2"
+    }
+  ]);
+
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/lesson-1" component={Lesson1} />
+        <Route exact path="/">
+          <Home lessons={lessons} />
+        </Route>
+        {/* {lessons.map(lesson => (
+          <Route path={`/lesson-${lesson.id}`}>
+            <LessonWrapper lesson={lesson}>
+              <Lesson1 />
+            </LessonWrapper>
+          </Route>
+        ))} */}
+        <Route path={`/lesson-1`}>
+          <LessonWrapper lesson={lessons[0]}>
+            <Lesson1 />
+          </LessonWrapper>
+        </Route>
+        <Route path={`/lesson-2`}>
+          <LessonWrapper lesson={lessons[1]}>
+            <Lesson2 />
+          </LessonWrapper>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
