@@ -13,7 +13,9 @@ function App() {
     },
     {
       id: 2,
-      title: "Lesson 2"
+      nr: 2,
+      title: "Let's build a clock!",
+      description: "a"
     }
   ]);
 
