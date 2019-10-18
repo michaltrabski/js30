@@ -1,42 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./Lesson2.css";
-import styled, { css } from "styled-components";
-
-const Hand = styled.div`
-  transform: rotate(-90deg);
-  transform-origin: 0%;
-  transition-timing-function: ease;
-  background-color: black;
-  width: 60%;
-  height: 6px;
-  background-color: black;
-
-  ${({ second }) =>
-    second &&
-    css`
-      background-color: blue;
-      width: 90%;
-      height: 1px;
-    `};
-
-  ${({ minute }) =>
-    minute &&
-    css`
-      width: 80%;
-      height: 4px;
-    `};
-`;
-
-const calculateRotation = (time, number = 60) =>
-  `rotate(${(time / number) * 360 - 90}deg)`;
+import {
+  Clock,
+  HourHand,
+  MinuteHand,
+  SecondHand,
+  Hour,
+  Label
+} from "./Elements";
 
 const Lesson2 = ({ lesson }) => {
-  console.log("Lesson2");
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("This will run every second!");
       let d = new Date();
       let s = d.getSeconds();
       let m = d.getMinutes();
@@ -50,18 +26,24 @@ const Lesson2 = ({ lesson }) => {
 
   return (
     <>
-      {console.log("Lesson2 return ")}
-      {`s=${s}m=${m}h=${h}`}
       <h2 className="text-center">lesson 2</h2>
-      <div className="clock">
-        <div className="hand-wrapper">
-          <Hand second style={{ transform: calculateRotation(s) }} />
-          <Hand minute style={{ transform: calculateRotation(m) }} />
-          <Hand style={{ transform: calculateRotation(h, 12) }} />
-        </div>
-      </div>
+
+      <Clock>
+        <Label>SEIKO</Label>
+        <HourHand move={calculateRotation(h, 12)} />
+        <MinuteHand move={calculateRotation(m)} />
+        <SecondHand move={calculateRotation(s)} />
+        <Hour />
+        <Hour one />
+        <Hour two />
+        <Hour tree />
+        <Hour four />
+        <Hour five />
+      </Clock>
     </>
   );
 };
+
+const calculateRotation = (time, number = 60) => (time / number) * 360 - 90;
 
 export default Lesson2;

@@ -8,9 +8,9 @@ const setWatch = () => {
   let minute = d.getMinutes();
   let hour = d.getHours();
 
-  roteteClockHand(second, ".second-hand");
-  roteteClockHand(minute, ".minute-hand");
-  roteteClockHand(hour, ".hour-hand", 12);
+  roteteClockHand(second, ".secondhand");
+  roteteClockHand(minute, ".minutehand");
+  roteteClockHand(hour, ".hourhand", 12);
 };
 setWatch();
 setInterval(setWatch, 1000);
