@@ -2,49 +2,34 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LessonWrapper from "./pages/LessonWrapper";
-import Lesson1 from "./pages/Lesson1/Lesson1";
-import Lesson2 from "./pages/Lesson2/Lesson2";
-import MyTopNav from "./Components/Navbar";
+import MyTopNav from "./components/MyTopNav";
+import { lessons_info } from "./data/Data";
 
 function App() {
-  const [lessons] = useState([
-    {
-      id: 1,
-      title: "Lesson 1"
-    },
-    {
-      id: 2,
-      nr: 2,
-      title: "Let's build a clock!",
-      description: "a"
-    }
-  ]);
+  const [lessons] = useState(lessons_info);
 
   return (
     <>
       <BrowserRouter>
-        <Route path="/" component={MyTopNav} />
+        <Route path="/">
+          <MyTopNav lessons={lessons} />
+        </Route>
         <Switch>
           <Route exact path="/">
             <Home lessons={lessons} />
           </Route>
-          {/* {lessons.map(lesson => (
-          <Route path={`/lesson-${lesson.id}`}>
-            <LessonWrapper lesson={lesson}>
-              <Lesson1 />
-            </LessonWrapper>
-          </Route>
-        ))} */}
-          <Route path={`/lesson-1`}>
-            <LessonWrapper lesson={lessons[0]}>
-              <Lesson1 />
-            </LessonWrapper>
-          </Route>
-          <Route path={`/lesson-2`}>
-            <LessonWrapper lesson={lessons[1]}>
-              <Lesson2 />
-            </LessonWrapper>
-          </Route>
+
+          {lessons.map((lesson, i) => (
+            <Route
+              key={i}
+              path={`/lesson-${lesson.nr}`}
+              render={() => (
+                <LessonWrapper lesson={lesson}>
+                  <lesson.component />
+                </LessonWrapper>
+              )}
+            />
+          ))}
         </Switch>
       </BrowserRouter>
     </>
