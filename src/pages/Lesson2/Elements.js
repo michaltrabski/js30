@@ -48,7 +48,8 @@ export const Hand = styled.div`
   left: calc(50% - 3.5vmin);
   z-index: 2;
   transform-origin: 16%;
-  transition: transform 1s;
+  transition: transform 0.9s;
+  animation-timing-function: linear;
 
   &:after {
     content: "";
