@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import LessonWrapper from "./pages/LessonWrapper";
 import Lesson1 from "./pages/Lesson1/Lesson1";
 import Lesson2 from "./pages/Lesson2/Lesson2";
+import MyTopNav from "./Components/Navbar";
 
 function App() {
   const [lessons] = useState([
@@ -20,30 +21,33 @@ function App() {
   ]);
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Home lessons={lessons} />
-        </Route>
-        {/* {lessons.map(lesson => (
+    <>
+      <BrowserRouter>
+        <Route path="/" component={MyTopNav} />
+        <Switch>
+          <Route exact path="/">
+            <Home lessons={lessons} />
+          </Route>
+          {/* {lessons.map(lesson => (
           <Route path={`/lesson-${lesson.id}`}>
             <LessonWrapper lesson={lesson}>
               <Lesson1 />
             </LessonWrapper>
           </Route>
         ))} */}
-        <Route path={`/lesson-1`}>
-          <LessonWrapper lesson={lessons[0]}>
-            <Lesson1 />
-          </LessonWrapper>
-        </Route>
-        <Route path={`/lesson-2`}>
-          <LessonWrapper lesson={lessons[1]}>
-            <Lesson2 />
-          </LessonWrapper>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+          <Route path={`/lesson-1`}>
+            <LessonWrapper lesson={lessons[0]}>
+              <Lesson1 />
+            </LessonWrapper>
+          </Route>
+          <Route path={`/lesson-2`}>
+            <LessonWrapper lesson={lessons[1]}>
+              <Lesson2 />
+            </LessonWrapper>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </>
   );
 }
 

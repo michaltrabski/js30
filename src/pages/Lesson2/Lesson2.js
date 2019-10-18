@@ -8,7 +8,7 @@ import {
   Label
 } from "./Elements";
 
-const Lesson2 = ({ lesson }) => {
+const Lesson2 = () => {
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
 
   useEffect(() => {
@@ -25,22 +25,18 @@ const Lesson2 = ({ lesson }) => {
   const { s, m, h } = time;
 
   return (
-    <>
-      <h2 className="text-center">lesson 2</h2>
-
-      <Clock>
-        <Label>SEIKO</Label>
-        <HourHand move={calculateRotation(h, 12)} />
-        <MinuteHand move={calculateRotation(m)} />
-        <SecondHand move={calculateRotation(s)} />
-        <Hour />
-        <Hour one />
-        <Hour two />
-        <Hour tree />
-        <Hour four />
-        <Hour five />
-      </Clock>
-    </>
+    <Clock>
+      <Label>SEIKO</Label>
+      <HourHand move={calculateRotation(h, 12)} />
+      <MinuteHand move={calculateRotation(m)} />
+      <SecondHand move={calculateRotation(s)} />
+      <Hour />
+      <Hour one />
+      <Hour two />
+      <Hour tree />
+      <Hour four />
+      <Hour five />
+    </Clock>
   );
 };
 
